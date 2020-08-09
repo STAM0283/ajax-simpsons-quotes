@@ -1,8 +1,8 @@
-function fetchPokemonJSON() {
+function axiosSimpsonJSON() {
     const url = `https://simpsons-quotes-api.herokuapp.com/quotes`;
     axios.get(url)
       .then(function(response) {
-        return response.data; 
+        return response.data[0]; 
       })
       .then(function(item) {
         console.log('data decoded from JSON:', item);
@@ -11,12 +11,14 @@ function fetchPokemonJSON() {
           <p><strong>${item.quote}</strong></p>
           <p><strong>${item.character}</strong></p>         
           <img src="${item.image}" />
+          <p>${item.characterDirection}</p>
         `;
         document.querySelector('.container').innerHTML = simpsonHtml;
       });
   }
   
-  fetchPokemonJSON();
+  axiosSimpsonJSON();
+  setInterval(axiosSimpsonJSON, 5000)
 
   // [
   //   {
